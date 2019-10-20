@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Message = ({from, message}) => (
+const Message = ({message}) => (
   <li className="clearfix">
     <div className="message-data align-right">
       <span className="message-data-time">{message.time} </span>
-      <span className="message-data-name">{from.name} </span>
+      <span className="message-data-name">{message.from.name} </span>
       <i className="fa fa-circle me"></i>
     </div>
     <div className="message other-message float-right">
@@ -14,10 +14,10 @@ const Message = ({from, message}) => (
   </li>
 )
 
-const Response = ({from, message}) => (
+const Response = ({message}) => (
   <li>
     <div className="message-data">
-      <span className="message-data-name"><i className="fa fa-circle online"></i>{from.name} </span>
+      <span className="message-data-name"><i className="fa fa-circle online"></i>{message.from.name} </span>
       <span className="message-data-time">{message.time}</span>
     </div>
     <div className="message my-message">
@@ -26,11 +26,11 @@ const Response = ({from, message}) => (
   </li>
 )
 
-const Typing = ({from, message}) => (
+const Typing = ({message}) => (
   <li className="clearfix">
     <div className="message-data align-right">
       <span className="message-data-time">{message.time} </span>
-      <span className="message-data-name">{from.name} </span>
+      <span className="message-data-name">{message.from.name} </span>
       <i className="fa fa-circle me"></i>
     </div>
     <div className="float-right">

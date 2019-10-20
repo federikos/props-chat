@@ -3,24 +3,30 @@ import PropTypes from 'prop-types';
 import { Message, Response, Typing } from './messageTypes'
 
 function MessageHistory({list}) {
+  if (!list.length) {
+    return null;
+  }
+
+  const messages = list.map(message => {
+    if (message.type === 'message') {
+      return <Message key={message.id} message={message} />
+    }
+
+    if (message.type === 'response') {
+      return <Response key={message.id} message={message} />
+    }
+
+    if (message.type === 'typing') {
+      return <Typing key={message.id} message={message} />
+    }
+  })
+
   return (
-    list.length
-    &&
     <ul>
-      {
-        list.map(li => {
-          const message = {text: li.text, time: li.time}
-          return(
-            li.type === 'message' 
-              ? <Message key={li.id} from={li.from} message={message} />
-              : li.type === 'response' 
-                ? <Response key={li.id} from={li.from} message={message} />
-                : li.type === 'typing' && <Typing key={li.id} from={li.from} message={message} />
-          )
-        })
-      }
+      {messages}
     </ul>
   )
+
 }
 
 MessageHistory.defaultProps = {
